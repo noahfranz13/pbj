@@ -1,7 +1,7 @@
 """Peanut butter: a spreadable ingredient with a "style" (creamy/crunchy)."""
 
 from .spread import SpreadableIngredient
-
+from ..exceptions import InvalidIngredientError
 
 class PeanutButter(SpreadableIngredient):
     """Peanut butter, spread on one slice of bread.
@@ -18,5 +18,9 @@ class PeanutButter(SpreadableIngredient):
     """
 
     def __init__(self, amount_tbsp: float = 2, style: str = "creamy", side: str = "bottom slice"):
+        if style == "crunchy":
+            raise InvalidIngredientError("crunchy peanut butter")
+
         self.style = style
+        
         super().__init__(name=f"{style} peanut butter", amount_tbsp=amount_tbsp, side=side)
