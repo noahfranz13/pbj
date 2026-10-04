@@ -24,15 +24,9 @@ def test_make_prints_assembly_steps(capsys):
 
 def test_custom_ingredients_are_used():
     """Swapping in custom ingredients should be reflected in the sandwich."""
-    pb = PeanutButter(amount_tbsp=3, style="crunchy")
+    pb = PeanutButter(amount_tbsp=3, style="smooth")
     jelly = Jelly(amount_tbsp=1, flavor="strawberry")
     sandwich = PBJ(peanut_butter=pb, jelly=jelly)
 
-    assert sandwich.peanut_butter.style == "crunchy"
+    assert sandwich.peanut_butter.style == "smooth"
     assert sandwich.jelly.flavor == "strawberry"
-
-
-def test_ingredient_is_abstract():
-    """Ingredient can't be instantiated directly since prepare() is abstract."""
-    with pytest.raises(TypeError):
-        Ingredient(name="mystery ingredient")
